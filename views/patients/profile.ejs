@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+  </head>
+
+  <body>
+    <h1>Welcome <%=patient.fName%> <%=patient.lName%></h1>
+    <form action="/patients/profile/<%= patient.id %>?_method=PUT" method="POST">
+      First Name: <input type="text" name="fName" value="<%=patient.fName%>" /><br /> <br />
+      Last Name: <input type="text" name="lName" value="<%=patient.lName%>" /><br /> <br />
+     Username:
+      <input type="text" name="username" value="<%=patient.username%>" />
+      <br />
+      <br />
+      Password:
+      <input type="text" name="password" value="<%=patient.password%>" /><br />
+      <br />
+      <input type="submit" value="Edit Profile" />
+    </form>
+    <br />
+    <form action="/patients/<%= patient.id %>?_method=DELETE" method="POST">
+      <input type="submit" value="Delete Patient" />
+    </form>
+   
+    <br><br>
+    <br /><br />
+    <a href="/doctors">View All Doctors</a>
+  </body>
+</html>

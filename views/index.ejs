@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Doctor Specialization</title>
+    <link rel="stylesheet" href="/css/app.css" />
+  </head>
+
+  <body>
+    <h1>Doctors at Health Shield</h1>
+
+    <ul>
+    <% for(let i=0; i<doctors.length; i++) { %>
+      <li>
+        <a href="/doctors/<%= doctors[i].id %>"> <%=doctors[i].fName%>  <%=doctors[i].lName%></a>
+        <!--  ADD DELETE FORM HERE-->
+        <form action="/doctors/<%= doctors[i].id; %>?_method=DELETE" method="POST">
+          <input type="submit" value="DELETE" />
+        </form>
+        <!-- Add edit link here  -->
+        <a href="/doctors/<%= doctors[i].id; %>/edit">Edit</a>
+      </li>
+      <% } %>
+    </ul>
+
+    <nav>
+      <a href="/doctors/new">Register a new doctor</a>
+    </nav>
+
+  </body>
+</html>
