@@ -2,16 +2,21 @@ const express = require("express");
 const router = express.Router();
 
 const Patient = require('../models').Patient;
+const Doctor = require('../models').Doctor;
+const DoctorPatient = require('../models').DoctorPatient;
 
-// GET PATIENTS PROFILE
+// GET PATIENTS PROFILE ; DISPLAY ASSOCIATED DOCTORS
 router.get("/profile/:id", (req, res) => {
-    console.log("Display patient reached ")
-    Patient.findByPk(req.params.id).then((patientProfile) => {
-        console.log("Patient Found")
-        res.render("patients/profile.ejs", {
-            patient: patientProfile
-        });
-    });   
+    Patient.findByPk(req.params.id, {
+        include: [{model: Doctor}]
+    }).then((patientProfile) => {
+        Doctor.findAll().then(allDocs =>{
+            res.render("patients/profile.ejs", {
+                patient: patientProfile,
+                allDocs: allDocs
+            });
+        });   
+    })
 });
 
 // GET SIGNUP FORM
@@ -31,29 +36,31 @@ router.post("/login", (req, res) => {
         username: req.body.username,
       },
     }).then((foundPatient) => {
-        console.log("PAtient found, before redirect to profile")
         res.redirect(`/patients/profile/${foundPatient.id}`);
          
     });
 })
 
-
 // AFTER SUCCESSFULL REGISTRATION SEND PATIENT TO PROFILE PAGE
-router.post("/", (req, res) => {
-    console.log("Calling create patient")
-    
+router.post("/", (req, res) => {   
     Patient.create(req.body)
         .then(newPatient => {            
         res.redirect(`/patients/profile/${newPatient.id}`);
     })
 })
 
-// EDIT PROFILE
+// EDIT PROFILE Create a new record on the join table
 router.put("/profile/:id", (req, res) => {
+    console.log(req.body)
     Patient.update(req.body, {
       where: { id: req.params.id },
       returning: true
-    }).then((patient) => res.redirect(`/patients/profile/${req.params.id}`));
+    }).then( patient =>{
+        DoctorPatient.create(req.body)
+        .then(patient => {
+            res.redirect(`/patients/profile/${req.params.id}`)
+        })        
+    })
 });
   
   // DELETE USER

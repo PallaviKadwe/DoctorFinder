@@ -15,7 +15,8 @@ module.exports = {
           phone: "123-111-1234",
           email: "jb@somemail.com",
           createdAt: new Date(),
-          updatedAt: new Date()
+          updatedAt: new Date(),
+          specId:1
         },
         {
           fName: "Mister",
@@ -27,7 +28,8 @@ module.exports = {
           phone: "123-111-1111",
           email: "mj@somemail.com",
           createdAt: new Date(),
-          updatedAt: new Date()
+          updatedAt: new Date(),
+          specId:2
         },
         {
           fName: "Scooby",
@@ -39,7 +41,8 @@ module.exports = {
           phone: "555-111-1111",
           email: "scooby@somemail.com",
           createdAt: new Date(),
-          updatedAt: new Date()
+          updatedAt: new Date(),
+          specId:3
         },
         {
           fName: "Meredith",
@@ -51,7 +54,8 @@ module.exports = {
           phone: "555-111-1111",
           email: "scooby@somemail.com",
           createdAt: new Date(),
-          updatedAt: new Date()
+          updatedAt: new Date(),
+          specId:4
         },
       ],
       {}

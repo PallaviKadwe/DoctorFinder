@@ -18,6 +18,13 @@
         <b> State: </b> <input type="text" name="state" /> <br/><br/>
         <b> Phone: </b> <input type="text" name="phone" /> <br/><br/>
         <b> Email: </b> <input type="text" name="email" /> <br/><br/>
+        <b> Speciality: </b> 
+        <select name="specId">
+          <% for ( let i = 0, j=1; i < allSpecs.length; i++, j++ ) {  %>             
+              <option value="<%=allSpecs[i].id%>"  > <%=allSpecs[i].name%> </option>
+          <% } %>
+        </select>
+        <br/><br/>
       <input type="submit" name="" value="Register Doctor" /> 
     </form>
   </body>

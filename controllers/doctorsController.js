@@ -4,6 +4,7 @@ const router = express.Router();
 
 const Speciality = require('../models').Speciality;
 const Doctor = require('../models').Doctor;
+const Patient = require('../models').Patient;
 
 //Sequelize GET route
 router.get("/", (req, res) => {
@@ -17,27 +18,30 @@ router.get("/", (req, res) => {
 
 //Display page to register a doctor (This code snippet should be above show.ejs)
 router.get("/new", (req, res) => {
-  res.render("new.ejs");
+  //res.render("new.ejs");
+  Speciality.findAll().then(allSpecs =>{
+    res.render("new.ejs",{ allSpecs: allSpecs})
+  })
 });
 
 // Display a specific doctor
 router.get("/:id", (req, res) => {
-  Doctor.findByPk(req.params.id)
-     /*{
-    include : [{
-        model: User,
-        attributes: ['name']
-      },
-      {
-        model: Season,
-      },
-    ],
-    attributes: ['name', 'color', 'readyToEat']
-    })*/
+    Doctor.findByPk(req.params.id, {
+      include : [{
+          model: Speciality,
+          attributes: ['name']
+        },
+        {
+          model: Patient,
+        },
+      ],
+      attributes: ['fName', 'lName', 'addr1', 'addr2', 'city', 'state', 'phone', 'email']
+    })
     .then((doctor) => {
       res.render('show.ejs', { doctor: doctor });
-  });
+    });
 });
+
 
 // Edit of doctor details
 router.put("/:id", (req, res) => {
@@ -61,7 +65,10 @@ router.post("/", (req, res) => {
 // Display doctor edit page
 router.get("/:id/edit", function (req, res) {
   Doctor.findByPk(req.params.id).then((foundDoctor) => {
-      res.render('edit.ejs', { doctor:foundDoctor});
+      Speciality.findAll().then(allSpecs =>{
+        res.render("edit.ejs",{ doctor:foundDoctor, allSpecs: allSpecs})
+      })
+      //res.render('edit.ejs', { doctor:foundDoctor});
     })    
 });
 
