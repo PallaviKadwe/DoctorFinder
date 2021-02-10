@@ -2,53 +2,63 @@
 <html>
   <head>
     <meta charset="utf-8" />
+    <title>Patient Welcome</title>
+    <link rel="stylesheet" href="/css/app.css" />
   </head>
 
   <body>
-    <h1>Welcome <%=patient.fName%> <%=patient.lName%></h1>
-    <form action="/patients/profile/<%= patient.id %>?_method=PUT" method="POST">
-      First Name: <input type="text" name="fName" value="<%=patient.fName%>" /><br /> <br />
-      Last Name: <input type="text" name="lName" value="<%=patient.lName%>" /><br /> <br />
-      Username: <input type="text" name="username" value="<%=patient.username%>" /> <br />  <br />
-      Password:  <input type="text" name="password" value="<%=patient.password%>" /><br />  <br />
-      Street 1: <input type="text" name="addr1" value="<%=patient.addr1%>" > <br/><br/>
-      Street 2: <input type="text" name="addr2" value="<%=patient.addr2%>" ><br/><br/>
-      City: <input type="text" name="city" value="<%=patient.city %>" ><br/><br/>
-      State: <input type="text" name="state" value="<%=patient.state %>" > <br/><br/>
-      Phone: <input type="text" name="phone" value="<%=patient.phone %>" > <br/><br/>
-      Email: <input type="text" name="email" value="<%=patient.email %>" > <br/><br/>
-      <input type="hidden" name="patientId" value="<%=patient.id %>" >
-      <h3>Doctors you are connected to currently</h3>
-      <ul>
-        <% for (let i = 0; i < patient.Doctors.length; i++){ %>
-          <li>
-            <%= patient.Doctors[i].fName %> <%= patient.Doctors[i].lName %> 
-          </li>
-          <% } %>
-        </ul>
-      <br /><br />
+    <div class="wrapper">
+      <div class="twoColGrid">
+        <div class="mainBar">
+            <h1>Welcome <%=patient.fName%> <%=patient.lName%></h1>
+        </div>
+        <div class="sideBar" style="text-align:left;">
+          <form action="/patients/profile/<%= patient.id %>?_method=PUT" method="POST">
+            First Name: <input type="text" name="fName" value="<%=patient.fName%>" /><br /> <br />
+            Last Name: <input type="text" name="lName" value="<%=patient.lName%>" /><br /> <br />
+            Username: <input type="text" name="username" value="<%=patient.username%>" /> <br />  <br />
+            Password:  <input type="text" name="password" value="<%=patient.password%>" /><br />  <br />
+            Street 1: <input type="text" name="addr1" value="<%=patient.addr1%>" > <br/><br/>
+            Street 2: <input type="text" name="addr2" value="<%=patient.addr2%>" ><br/><br/>
+            City: <input type="text" name="city" value="<%=patient.city %>" ><br/><br/>
+            State: <input type="text" name="state" value="<%=patient.state %>" > <br/><br/>
+            Phone: <input type="text" name="phone" value="<%=patient.phone %>" > <br/><br/>
+            Email: <input type="text" name="email" value="<%=patient.email %>" > <br/><br/>
+            <input type="hidden" name="patientId" value="<%=patient.id %>" >
+        </div>
 
-      <h3>To connect to additional doctors, select doctor from the list</h3> 
-      <select name="doctorId">
-        <option value="none" selected disabled hidden> 
-          Select a doctor 
-      </option> 
-        <% for ( let i = 0; i < allDocs.length; i++ ) { %>
-        <option value="<%=allDocs[i].id%>" >
-           <%=allDocs[i].fName%> <%=allDocs[i].lName%>
-        </option>
-        <% } %>
-      </select>
-      <br><br>
-      <input type="submit" value="Save" />
-    </form>
-    <br />
-    <form action="/patients/<%= patient.id %>?_method=DELETE" method="POST">
-      <input type="submit" value="Delete Patient" />
-    </form>
-   
-    
-      <BR />   <BR />
-    <a href="/doctors">View all doctors</a>
+        <div class="sideBar" style="text-align:left;">
+            <h3>Doctors you are connected to currently</h3>
+            <ul>
+              <% for (let i = 0; i < patient.Doctors.length; i++){ %>
+                <li>
+                  <%= patient.Doctors[i].fName %> <%= patient.Doctors[i].lName %> 
+                </li>
+                <% } %>
+              </ul>
+            <br /><br />
+
+            <h3>To connect to additional doctors, select doctor from the list</h3> 
+            <select name="doctorId">
+              <option value="none" selected disabled hidden> 
+                Select a doctor 
+            </option> 
+              <% for ( let i = 0; i < allDocs.length; i++ ) { %>
+              <option value="<%=allDocs[i].id%>" >
+                <%=allDocs[i].fName%> <%=allDocs[i].lName%>
+              </option>
+              <% } %>
+            </select>
+            <br><br>
+            <input type="submit" value="Save" />
+          </form>
+        </div>
+
+          <form action="/patients/<%= patient.id %>?_method=DELETE" method="POST">
+          <input type="submit" value="Delete Patient" />
+          </form>
+          <a href="/doctors">View all doctors</a>
+      </div>
+    </div>
   </body>
 </html>

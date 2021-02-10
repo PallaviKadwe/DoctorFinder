@@ -7,25 +7,35 @@
   </head>
 
   <body>
-    <h1>Register Doctor at Health Shield</h1>
-    <!--  NOTE: action will be the route, method will be the HTTP verb-->
-    <form action="/doctors" method="POST">
-        <b> First Name: </b> <input type="text" name="fName" />  <br/><br/>
-        <b> Last Name: </b> <input type="text" name="lName" /> <br/><br/>
-        <b> Street 1: </b> <input type="text" name="addr1" /> <br/><br/>
-        <b> Street 2: </b> <input type="text" name="addr2" /> <br/><br/>
-        <b> City: </b> <input type="text" name="city" /> <br/><br/>
-        <b> State: </b> <input type="text" name="state" /> <br/><br/>
-        <b> Phone: </b> <input type="text" name="phone" /> <br/><br/>
-        <b> Email: </b> <input type="text" name="email" /> <br/><br/>
-        <b> Speciality: </b> 
-        <select name="specId">
-          <% for ( let i = 0, j=1; i < allSpecs.length; i++, j++ ) {  %>             
-              <option value="<%=allSpecs[i].id%>"  > <%=allSpecs[i].name%> </option>
-          <% } %>
-        </select>
-        <br/><br/>
-      <input type="submit" name="" value="Register Doctor" /> 
-    </form>
+    <div class="wrapper">
+      <div class="twoColGrid">
+       <div class="mainBar">
+          <h1>Doctor Registration</h1>
+        </div>
+
+        <div class="content" >        </div>
+        <div class="sidebar" style="text-align:left;">
+        <!--  NOTE: action will be the route, method will be the HTTP verb-->
+        <form action="/doctors" method="POST">
+            <b> First Name: </b> <input type="text" name="fName" />  <br/><br/>
+            <b> Last Name: </b> <input type="text" name="lName" /> <br/><br/>
+            <b> Street 1: </b> <input type="text" name="addr1" /> <br/><br/>
+            <b> Street 2: </b> <input type="text" name="addr2" /> <br/><br/>
+            <b> City: </b> <input type="text" name="city" /> <br/><br/>
+            <b> State: </b> <input type="text" name="state" /> <br/><br/>
+            <b> Phone: </b> <input type="text" name="phone" /> <br/><br/>
+            <b> Email: </b> <input type="text" name="email" /> <br/><br/>
+            <b> Speciality: </b> 
+            <select name="specId">
+              <% for ( let i = 0, j=1; i < allSpecs.length; i++, j++ ) {  %>             
+                  <option value="<%=allSpecs[i].id%>"  > <%=allSpecs[i].name%> </option>
+              <% } %>
+            </select>
+            <br/><br/>
+          <input type="submit" name="" value="Register Doctor" /> 
+        </form>
+        </div>
+    </div>
+    </div>
   </body>
 </html>

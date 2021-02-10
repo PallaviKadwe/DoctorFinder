@@ -6,18 +6,26 @@
   </head>
 
   <body>
-    <h1>Doctor Details</h1>
-    <b> Dr. <%= doctor.fName %> <%= doctor.lName %> </b> <br/><br/><br/>
-  
-    Street 1: <%= doctor.addr1 %> <br/>
-    Street 2: <%= doctor.addr2 %> <br/>
-    City: <%= doctor.city %> <br/>
-    State: <%= doctor.state %> <br/>
-    Phone: <%= doctor.phone %> <br/>
-    Email: <%= doctor.email %> <br/>
-    Speciality:  <%= doctor.Speciality.name %> <br/>
+    <div class="wrapper">
+      <div class="twoColGrid">
+        <div class="mainBar">
+        <h1>Doctor Details</h1>
+        </div>
+        <div class="content" >        </div>
+        <div class="sidebar" style="text-align:left;">
+        <b> Dr. <%= doctor.fName %> <%= doctor.lName %> </b> <br/><br/><br/>
+      
+        Street 1: <%= doctor.addr1 %> <br/>
+        Street 2: <%= doctor.addr2 %> <br/>
+        City: <%= doctor.city %> <br/>
+        State: <%= doctor.state %> <br/>
+        Phone: <%= doctor.phone %> <br/>
+        Email: <%= doctor.email %> <br/>
+        Speciality:  <%= doctor.Speciality.name %> <br/>
+      </div>
 
 
-    
+    </div>
+  </div>  
   </body>
 </html>

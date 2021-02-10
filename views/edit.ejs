@@ -7,28 +7,37 @@
   </head>
 
   <body>
-    <h1>Edit Doctor Details</h1>
-    <!--  ADD action attribute to form tag-->
-    <form action="/doctors/<%= doctor.id %>?_method=PUT" method="POST">
-      First Name: <input type="text" name="fName" value="<%=doctor.fName%>" /><br />
-      Last Name: <input type="text" name="lName" value="<%=doctor.lName%>" /><br />
-      Street 1: <input type="text" name="addr1" value="<%=doctor.addr1%>" /><br />
-      Street 2: <input type="text" name="addr2" value="<%=doctor.addr2%>" /><br />
-      City: <input type="text" name="city" value="<%=doctor.city%>" /><br />
-      State: <input type="text" name="state" value="<%=doctor.state%>" /><br />
-      Phone: <input type="text" name="phone" value="<%=doctor.phone%>" /><br />
-      Email: <input type="text" name="email" value="<%=doctor.email%>" /><br />
-      Speciality:
-      <select name="specId">
-        <% for ( let i = 0, j=1; i < allSpecs.length; i++, j++ ) {  %>
-            <% if (j == doctor.specId) { %>
-            <option value="<%=allSpecs[i].id%>" selected > <%=allSpecs[i].name%> </option>
-            <%} else {%>
-                <option value="<%=allSpecs[i].id%>"  > <%=allSpecs[i].name%> </option>
-            <%} %>
-        <% } %>
-      </select> <br/>
-      <input type="submit" name="" value="Submit Changes" />
-    </form>
+    <div class="wrapper">
+      <div class="twoColGrid">
+       <div class="mainBar">
+          <h1>Edit Doctor Details</h1>
+        </div>
+        <div class="content" >        </div>
+        <div class="sidebar" style="text-align:left;">
+        <!--  ADD action attribute to form tag-->
+        <form action="/doctors/<%= doctor.id %>?_method=PUT" method="POST">
+          First Name: <input type="text" name="fName" value="<%=doctor.fName%>" /><br />
+          Last Name: <input type="text" name="lName" value="<%=doctor.lName%>" /><br />
+          Street 1: <input type="text" name="addr1" value="<%=doctor.addr1%>" /><br />
+          Street 2: <input type="text" name="addr2" value="<%=doctor.addr2%>" /><br />
+          City: <input type="text" name="city" value="<%=doctor.city%>" /><br />
+          State: <input type="text" name="state" value="<%=doctor.state%>" /><br />
+          Phone: <input type="text" name="phone" value="<%=doctor.phone%>" /><br />
+          Email: <input type="text" name="email" value="<%=doctor.email%>" /><br />
+          Speciality:
+          <select name="specId">
+            <% for ( let i = 0, j=1; i < allSpecs.length; i++, j++ ) {  %>
+                <% if (j == doctor.specId) { %>
+                <option value="<%=allSpecs[i].id%>" selected > <%=allSpecs[i].name%> </option>
+                <%} else {%>
+                    <option value="<%=allSpecs[i].id%>"  > <%=allSpecs[i].name%> </option>
+                <%} %>
+            <% } %>
+          </select> <br/>
+          <input type="submit" name="" value="Submit Changes" />
+        </form>
+        </div>
+    </div>
+    </div>
   </body>
 </html>

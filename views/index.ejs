@@ -7,25 +7,34 @@
   </head>
 
   <body>
-    <h1>Doctors at Health Shield</h1>
+    <div class="wrapper">
+      <div class="twoColGrid">
+       <div class="mainBar">
+          <h1>Doctors at Health Shield</h1>
+       </div>
+       <div class="content" >        </div>
+       <div class="sidebar" style="text-align:left;">
+          <ul>
+          <% for(let i=0; i<doctors.length; i++) { %>
+            <li>
+              <a href="/doctors/<%= doctors[i].id %>"> <%=doctors[i].fName%>  <%=doctors[i].lName%></a>
+              <!--  ADD DELETE FORM HERE-->
+              <form action="/doctors/<%= doctors[i].id; %>?_method=DELETE" method="POST">
+                <input type="submit" value="DELETE" />
+              </form>
+              <!-- Add edit link here  -->
+              <a href="/doctors/<%= doctors[i].id; %>/edit">Edit</a>
+            </li>
+            <% } %>
+          </ul>
 
-    <ul>
-    <% for(let i=0; i<doctors.length; i++) { %>
-      <li>
-        <a href="/doctors/<%= doctors[i].id %>"> <%=doctors[i].fName%>  <%=doctors[i].lName%></a>
-        <!--  ADD DELETE FORM HERE-->
-        <form action="/doctors/<%= doctors[i].id; %>?_method=DELETE" method="POST">
-          <input type="submit" value="DELETE" />
-        </form>
-        <!-- Add edit link here  -->
-        <a href="/doctors/<%= doctors[i].id; %>/edit">Edit</a>
-      </li>
-      <% } %>
-    </ul>
+          <nav>
+            <a href="/doctors/new">Register a new doctor</a>
+          </nav>
+        </div>
+      </div>
+    </div>
 
-    <nav>
-      <a href="/doctors/new">Register a new doctor</a>
-    </nav>
 
   </body>
 </html>
