@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require("express");
 const app = express(); //app is an object
 app.use(express.static("public"));
@@ -10,15 +11,39 @@ app.use(methodOverride("_method"));
 //near the top, around other app.use() calls
 app.use(express.urlencoded({ extended: true }));
 
-// controllers
+const jwt = require("jsonwebtoken");
+const cookieParser = require("cookie-parser");
+
+app.use(cookieParser());
+
+const verifyToken = (req, res, next) => {
+    console.log("Verify Token")
+    let token = req.cookies.jwt; // COOKIE PARSER GIVES YOU A .cookies PROP, WE NAMED OUR TOKEN jwt
+  
+    console.log("Cookies: ", req.cookies.jwt);
+  
+    jwt.verify(token, process.env.JWT_SECRET, (err, decodedUser) => {
+      if (err || !decodedUser) {
+        return res.status(401).json({ error: "Unauthorized Request" });
+      }
+      req.user = decodedUser; // ADDS A .user PROP TO REQ FOR TOKEN USER
+      console.log(decodedUser);
+  
+      next();
+    });
+};
+  
+
+// ADD THE VERIFY TOKEN MIDDLEWARE WHERE WE WANT AUTHENTICATION
+app.use("/patients", verifyToken, require("./controllers/patientsController.js"));
 app.use("/doctors", require("./controllers/doctorsController.js"));
-app.use("/patients", require("./controllers/patientsController.js"));
+app.use("/auth", require("./controllers/authController.js"));
 
 //Sequelize GET route
 app.get("/", (req, res) => {
     res.render("patients/index.ejs"); 
 });
 
-app.listen(3000, () => {
+app.listen(process.env.PORT, () => {
     console.log("I am listening");
 });

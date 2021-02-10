@@ -7,49 +7,25 @@ const DoctorPatient = require('../models').DoctorPatient;
 
 // GET PATIENTS PROFILE ; DISPLAY ASSOCIATED DOCTORS
 router.get("/profile/:id", (req, res) => {
-    Patient.findByPk(req.params.id, {
-        include: [{model: Doctor}]
-    }).then((patientProfile) => {
-        Doctor.findAll().then(allDocs =>{
-            res.render("patients/profile.ejs", {
-                patient: patientProfile,
-                allDocs: allDocs
-            });
-        });   
-    })
+    // IF USER ID FROM TOKEN MATCHES THE REQUESTED ENDPOINT, LET THEM IN
+    if (req.user.id == req.params.id) {
+        Patient.findByPk(req.params.id, {
+            include: [{model: Doctor}]
+        }).then((patientProfile) => {
+            Doctor.findAll().then(allDocs =>{
+                res.render("patients/profile.ejs", {
+                    patient: patientProfile,
+                    allDocs: allDocs
+                });
+            });   
+        })
+    }else {
+        // res.json("unauthorized");
+        res.redirect("/");
+    }
 });
 
-// GET SIGNUP FORM
-router.get("/signup", (req, res) => {
-    res.render("patients/signup.ejs");
-});
-
-// GET LOGIN
-router.get("/login", (req, res) => {
-    res.render("patients/login.ejs");
-});
-
-// AFTER SUCCESSFULL LOGIN SEND PATIENT TO PROFILE PAGE
-router.post("/login", (req, res) => {    
-    Patient.findOne({
-      where: {
-        username: req.body.username,
-      },
-    }).then((foundPatient) => {
-        res.redirect(`/patients/profile/${foundPatient.id}`);
-         
-    });
-})
-
-// AFTER SUCCESSFULL REGISTRATION SEND PATIENT TO PROFILE PAGE
-router.post("/", (req, res) => {   
-    Patient.create(req.body)
-        .then(newPatient => {            
-        res.redirect(`/patients/profile/${newPatient.id}`);
-    })
-})
-
-// EDIT PROFILE Create a new record on the join table
+// EDIT PATIENT PROFILE Create a new record on the join table
 router.put("/profile/:id", (req, res) => {
     console.log(req.body)
     Patient.update(req.body, {
@@ -63,7 +39,7 @@ router.put("/profile/:id", (req, res) => {
     })
 });
   
-  // DELETE USER
+// DELETE USER
 router.delete("/:id", (req, res) => {
     Patient.destroy({ where: { id: req.params.id } }).then(() => {
       res.redirect("/"); //redirect back to index route
