@@ -13,11 +13,17 @@
           <h1>Patient Login</h1>
         </div>
         <div class="content"></div>
+        <div class="sidebar">
+          <% if (typeof msg !== 'undefined')  {%>
+          <h4 style="color:red"><%=msg%></h4>  
+          <% } %>      
         <form action="/auth/login" method="POST">
           Username: <input type="text" name="username" /> <br /> <br />
           Password: <input type="text" name="password" /><br /> <br />
           <input type="submit" value="Login" />
         </form>
+      </div>
+        
       </div>
     </div>
 

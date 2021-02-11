@@ -3,6 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <title>Doctor Details</title>
+    <link rel="stylesheet" href="/css/app.css" />
   </head>
 
   <body>
@@ -15,13 +16,17 @@
         <div class="sidebar" style="text-align:left;">
         <b> Dr. <%= doctor.fName %> <%= doctor.lName %> </b> <br/><br/><br/>
       
-        Street 1: <%= doctor.addr1 %> <br/>
-        Street 2: <%= doctor.addr2 %> <br/>
-        City: <%= doctor.city %> <br/>
-        State: <%= doctor.state %> <br/>
-        Phone: <%= doctor.phone %> <br/>
-        Email: <%= doctor.email %> <br/>
-        Speciality:  <%= doctor.Speciality.name %> <br/>
+        <b>Street 1:</b> <%= doctor.addr1 %> <br/>
+        <b>Street 2:</b> <%= doctor.addr2 %> <br/>
+        <b>City:</b> <%= doctor.city %> <br/>
+        <b>State:</b> <%= doctor.state %> <br/>
+        <b>Phone:</b> <%= doctor.phone %> <br/>
+        <b>Email:</b> <%= doctor.email %> <br/>
+        <b>Speciality:</b>  <%= doctor.Speciality.name %> <br/>
+
+        <form action="/doctors" method="GET">
+          <input type="submit" name="Back" value="back" /> 
+        </form>
       </div>
 
 

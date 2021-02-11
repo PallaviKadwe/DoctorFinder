@@ -13,13 +13,7 @@ router.get("/signup", (req, res) => {
     res.render("patients/signup.ejs");
 });
 
-// AFTER PATIENT SIGNUP SEND PATIENT TO PROFILE PAGE
-/*router.post("/", (req, res) => {   
-    Patient.create(req.body)
-        .then(newPatient => {            
-        res.redirect(`/patients/profile/${newPatient.id}`);
-    })
-})*/
+
 router.post("/", (req, res) => {  
     bcrypt.genSalt(10, (err, salt) => {
         if (err) return res.status(500).json(err);
@@ -54,21 +48,15 @@ router.post("/", (req, res) => {
 
 // GET PATIENT LOGIN
 router.get("/login", (req, res) => {
-    res.render("patients/login.ejs");
+    if(req.query.user){
+        let msg = "Username " + req.query.user + " not found"
+        res.render("patients/login.ejs", { msg: msg});
+    } else{
+        res.render("patients/login.ejs");
+    }
 });
 
 // POST PATIENT LOGIN SEND PATIENT TO PROFILE PAGE
-/*router.post("/login", (req, res) => {    
-    Patient.findOne({
-      where: {
-        username: req.body.username,
-        password: req.body.password,
-      },
-    }).then((foundPatient) => {
-        res.redirect(`/patients/profile/${foundPatient.id}`);         
-    });
-})*/
-
 router.post("/login", (req, res) => {    
     Patient.findOne({
       where: {
@@ -95,7 +83,9 @@ router.post("/login", (req, res) => {
                     return res.sendStatus(400);
                 } 
             })  
-        }    
+        }else{
+            res.redirect("/auth/login/?user=" + req.body.username);
+        }
     });
 })
 

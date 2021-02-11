@@ -17,22 +17,25 @@
         <div class="sidebar" style="text-align:left;">
         <!--  NOTE: action will be the route, method will be the HTTP verb-->
         <form action="/doctors" method="POST">
-            <b> First Name: </b> <input type="text" name="fName" />  <br/><br/>
-            <b> Last Name: </b> <input type="text" name="lName" /> <br/><br/>
-            <b> Street 1: </b> <input type="text" name="addr1" /> <br/><br/>
-            <b> Street 2: </b> <input type="text" name="addr2" /> <br/><br/>
-            <b> City: </b> <input type="text" name="city" /> <br/><br/>
-            <b> State: </b> <input type="text" name="state" /> <br/><br/>
-            <b> Phone: </b> <input type="text" name="phone" /> <br/><br/>
-            <b> Email: </b> <input type="text" name="email" /> <br/><br/>
-            <b> Speciality: </b> 
+            First Name:  <input type="text" name="fName" />  <br/>
+            Last Name:  <input type="text" name="lName" /> <br/>
+            Street 1:  <input type="text" name="addr1" /> <br/>
+            Street 2: <input type="text" name="addr2" /> <br/>
+            City:  <input type="text" name="city" /> <br/>
+            State: <input type="text" name="state" /> <br/>
+            Phone:  <input type="text" name="phone" /> <br/>
+            Email:  <input type="text" name="email" /> <br/>
+            Speciality:  
             <select name="specId">
               <% for ( let i = 0, j=1; i < allSpecs.length; i++, j++ ) {  %>             
                   <option value="<%=allSpecs[i].id%>"  > <%=allSpecs[i].name%> </option>
               <% } %>
             </select>
             <br/><br/>
-          <input type="submit" name="" value="Register Doctor" /> 
+          <input type="submit" name="" value="Register" /> 
+        </form>
+        <form action="/doctors" method="GET">
+          <input type="submit" name="Cancel" value="back" /> 
         </form>
         </div>
     </div>
