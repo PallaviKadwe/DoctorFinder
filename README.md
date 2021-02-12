@@ -7,9 +7,8 @@ The application is located at : https://mydoctorfinder.herokuapp.com. The doctor
 The github repo : https://github.com/PallaviKadwe/DoctorFinder
 
 
-
 ## Technical Details
-* This is a full stack application build using **Node.js, Postgres, Express and EJS**
+* The application build using **Node.js, Postgres, Express and EJS**
 * It adheres to the **MVC** file structure: Models, Views, Controllers and has 4 models **Doctor, Patient, Speciality, DoctorPatient** 
 * The Doctor to the Speciality is a **one to many relationship** wherein the SpecialityId is stored in the Doctor table. The Doctor to Patient is a **many to many** relationship.
 * The application includes a Patient **sign up/log in** functionality, with encrypted passwords & an authorization flow
