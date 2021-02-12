@@ -5,7 +5,7 @@ The application is located at : https://mydoctorfinder.herokuapp.com. The doctor
 
 ## Links
 The github repo : https://github.com/PallaviKadwe/DoctorFinder
-
+The Heroku repo : https://dashboard.heroku.com/apps/mydoctorfinder
 
 ## Technical Details
 * The application build using **Node.js, Postgres, Express and EJS**
